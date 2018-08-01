@@ -2,16 +2,23 @@ function graduates (students) {
   // Code disini
   let output = {};
 
-  for (var i in students) {
-    var kelas = students[i].class;
-    if (students[i].score > 75) {
-      output[kelas] = {};
-      output[kelas].name = students[i].name;
-      output[kelas].score = students[i].score;
+  for (let i in students) {
+    var kelas = students[i].class
+    if (output[kelas] === undefined && students[i].score > 75) {
+      var murid = {};
+      murid.name = students[i].name;
+      murid.score = students[i].score;
+      output[kelas] = [murid]
+    } else if (students[i].score > 75) {
+      var muridLain = {};
+      muridLain.name = students[i].name;
+      muridLain.score = students[i].score;
+      output[kelas].push(muridLain);
     }
+    
   }
 
-  return output;
+  return output
 }
 
 console.log(graduates([
